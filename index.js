@@ -8,11 +8,15 @@
     const err = e =>console.log(chalk.red.bold(e))
 
     if (stderr) {
-        err(`Error: ${stderr}`)
+        err(`Error executing docker ps: ${stderr}`)
         return
     }
 
-    const names = stdout.split("\n").slice(1).map(l=>l.split(' ').slice(-1)[0]).filter(n=>!!n)
+    const names = stdout
+        .split("\n")
+        .slice(1)
+        .map(l=>l.split(' ').slice(-1).pop())
+        .filter(n=>!!n)
 
     if (names.length === 0) {
         err('There are no running docker containers')
