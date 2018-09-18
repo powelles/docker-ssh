@@ -58,7 +58,7 @@
         return
     }
 
-    const spawn = require('child_process').spawn
+    const { spawn } = require('child_process')
 
     const ssh = spawn('docker', ['exec', '-it', container, shell], { stdio: 'inherit' })
 })()
